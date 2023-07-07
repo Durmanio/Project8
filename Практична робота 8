@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+int countAnagrams(const std::string& word) {
+    // Копіюємо слово
+    std::string sortedWord = word;
+
+    // Сортуємо літери
+    std::sort(sortedWord.begin(), sortedWord.end());
+
+    int count = 1;
+    // Знаходимо всі унікальні перестановки
+    while (std::next_permutation(sortedWord.begin(), sortedWord.end())) {
+        count++;
+    }
+
+    return count;
+}
+
+int main() {
+    std::string word;
+
+    std::cout << "Enter a word: ";
+    std::cin >> word;
+
+    int anagramCount = countAnagrams(word);
+
+    std::cout << "Number of anagrams: " << anagramCount << std::endl;
+
+    return 0;
+}
